@@ -39,15 +39,15 @@ class TripletDequeTest {
         assertEquals("n_0", tQueue.getLast());
     }
 //TODO не могу пройти((( (подумать)
-//    @Test
-//    void iterTest(){
-//        for (int i=0; i < 15; i++){
-//            tQueue.addFirst("n_"+i);
-//        }
-//        for (String s : tQueue) {
-//            System.out.println(s);
-//        }
-//    }
+    @Test
+    void iterTest(){
+        for (int i=0; i < 15; i++){
+            tQueue.addFirst("n_"+i);
+        }
+        for (String s : tQueue) {
+            System.out.println(s);
+        }
+    }
 //
 //    @Test
 //    void removeTest(){

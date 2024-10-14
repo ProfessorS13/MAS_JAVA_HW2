@@ -377,9 +377,43 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
         return this.sizeDeque == 0;
     }
 
+    private class TripletDequeIterator<T> implements Iterator<T>{
+        private TripletDeque<T> tripletDeque;
+        private Conteiner<T> conteiner;
+        private int conteinerIndex;
+
+        public TripletDequeIterator(TripletDeque<T> tripletDeque){
+            this.tripletDeque = tripletDeque;
+            this.conteiner = (Conteiner<T>) this.tripletDeque.first;
+            this.conteinerIndex = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return this.conteiner != null;
+        }
+
+        @Override
+        public T next() {
+            if (!this.hasNext()){
+                throw new NoSuchElementException("Контейнера не существует");
+            }
+            T nexElement = (T) this.conteiner.elements[conteinerIndex++];
+            if (this.conteinerIndex == 4){
+                this.conteiner = this.conteiner.next;
+                if (this.conteiner != null){
+                    this.conteinerIndex = 0;
+                }
+            }
+            return nexElement;
+        }
+    }
     @Override
     public Iterator<T> iterator() {
-        return null;
+        if (this.first == null){
+            throw new NullPointerException("Очередь пуста");
+        }
+        return new TripletDequeIterator<>(this);
     }
 
     @Override

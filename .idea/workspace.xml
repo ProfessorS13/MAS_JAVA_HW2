@@ -7,7 +7,7 @@
     <list default="true" id="76607499-da58-4111-a820-be31cd95b500" name="Changes" comment="class Container">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TripletDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TripletDeque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/TripletDequeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/TripletDequeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,33 +47,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.main.executor": "Run",
-    "JUnit.TripletDequeTest.addTest.executor": "Run",
-    "JUnit.TripletDequeTest.executor": "Run",
-    "JUnit.TripletDequeTest.iterTest.executor": "Run",
-    "JUnit.TripletDequeTest.removeTest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "develop",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/учёба/Магистратура/5 курс/Мультиагенты/HomeWork/MAS_JAVA_HW2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "editor.preferences.inline.completion",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.main.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TripletDequeTest.addTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TripletDequeTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TripletDequeTest.iterTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TripletDequeTest.removeTest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/учёба/Магистратура/5 курс/Мультиагенты/HomeWork/MAS_JAVA_HW2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.inline.completion&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -82,7 +82,7 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.main">
+  <component name="RunManager" selected="JUnit.TripletDequeTest">
     <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.main" />
       <module name="MAS_JAVA_HW2" />
@@ -111,7 +111,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TripletDequeTest.addTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TripletDequeTest.addTest2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MAS_JAVA_HW2" />
       <extension name="coverage">
         <pattern>
@@ -121,7 +121,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.example" />
       <option name="MAIN_CLASS_NAME" value="org.example.TripletDequeTest" />
-      <option name="METHOD_NAME" value="addTest" />
+      <option name="METHOD_NAME" value="addTest2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -161,11 +161,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TripletDequeTest" />
+        <item itemvalue="JUnit.TripletDequeTest.addTest2" />
         <item itemvalue="Application.main" />
         <item itemvalue="JUnit.TripletDequeTest.iterTest" />
         <item itemvalue="JUnit.TripletDequeTest.removeTest" />
-        <item itemvalue="JUnit.TripletDequeTest" />
-        <item itemvalue="JUnit.TripletDequeTest.addTest" />
       </list>
     </recent_temporary>
   </component>
@@ -188,7 +188,9 @@
       <workItem from="1728322357116" duration="10717000" />
       <workItem from="1728735519653" duration="16512000" />
       <workItem from="1728845034461" duration="6065000" />
-      <workItem from="1728891255206" duration="7010000" />
+      <workItem from="1728891255206" duration="7089000" />
+      <workItem from="1728914113409" duration="82000" />
+      <workItem from="1728927165241" duration="1790000" />
     </task>
     <task id="LOCAL-00001" summary="class Container">
       <option name="closed" value="true" />
@@ -234,15 +236,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/java/org/example/TripletDequeTest.java</url>
-          <line>42</line>
-          <properties class="org.example.TripletDequeTest">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="3" />
