@@ -38,7 +38,7 @@ class TripletDequeTest {
         assertEquals("n_14", tQueue.getFirst());
         assertEquals("n_0", tQueue.getLast());
     }
-//TODO не могу пройти((( (подумать)
+
     @Test
     void iterTest(){
         for (int i=0; i < 15; i++){
@@ -48,31 +48,30 @@ class TripletDequeTest {
             System.out.println(s);
         }
     }
-//
-//    @Test
-//    void removeTest(){
-//        for (int i=0; i < 15 ;i++){
-//            tQueue.addFirst("n_"+i);
-//        }
-//
-//        Assertions.assertTrue(tQueue.contains("n_3"));
-//        tQueue.remove("n_3");
-//        Assertions.assertFalse(tQueue.contains("n_3"));
-//
-//    }
-//
-//
-//    @Test
-//    public void testIsEmptyAfterAddRemoveFirst() {
-//        tQueue.addFirst("Something");
-//        boolean empty = tQueue.isEmpty();
-//        assertFalse( empty );
-//        tQueue.removeFirst();
-//
-//        empty = tQueue.isEmpty();
-//        assertTrue(empty);
-//
-//    }
+
+    @Test
+    void removeTest(){
+        for (int i=0; i < 15 ;i++){
+            tQueue.addFirst("n_"+i);
+        }
+
+        Assertions.assertTrue(tQueue.contains("n_3"));
+        tQueue.remove("n_3");
+        Assertions.assertFalse(tQueue.contains("n_3"));
+
+    }
+
+    @Test
+    public void testIsEmptyAfterAddRemoveFirst() {
+        tQueue.addFirst("Something");
+        boolean empty = tQueue.isEmpty();
+        assertFalse( empty );
+        tQueue.removeFirst();
+
+        empty = tQueue.isEmpty();
+        assertTrue(empty);
+
+    }
 //
 //
 //    @Test

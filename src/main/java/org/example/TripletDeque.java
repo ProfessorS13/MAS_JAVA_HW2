@@ -6,8 +6,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class TripletDeque<T> implements Deque<T>, Containerable{
-    private Conteiner<T> first;
-    private Conteiner<T> last;
+    private Container<T> first;
+    private Container<T> last;
     private int sizeContainerMax = 5;
     private int sizeDequeMax = 1000;
     private int sizeDeque = 0;
@@ -28,20 +28,20 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
     @Override
     public Object[] getContainerByIndex(int cIndex) {
         int indexConteiner = 0;
-        Conteiner<T> conteiner = this.first;
+        Container<T> container = this.first;
         while (indexConteiner < cIndex){
-            conteiner = conteiner.next;
-            if (conteiner == null){ // если следующего нет, то null
+            container = container.next;
+            if (container == null){ // если следующего нет, то null
                 return null;
             }
             indexConteiner++;
         }
-        return conteiner.elements;
+        return container.elements;
     }
 
-    private class Conteiner<T>{
-        private Conteiner<T> next;
-        private Conteiner<T> prev;
+    private class Container<T>{
+        private Container<T> next;
+        private Container<T> prev;
         private Object[] elements = new Object[sizeContainerMax];
 
         public boolean equals(Object o){
@@ -60,14 +60,14 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
             throw new NullPointerException("Cannot add null element");
         }
         if (this.first == null) {
-            this.first = new Conteiner<T>();
+            this.first = new Container<T>();
             this.last = this.first;
             if (this.sizeDeque++ > sizeDequeMax){
                 throw new IllegalStateException("Нельзя выходить за допустимые пределы очереди");
             }
         }
         if (this.first == this.last && this.first.elements[0] != null){
-            this.first.prev = new Conteiner<T>(); //  создаем контейнер леевее
+            this.first.prev = new Container<T>(); //  создаем контейнер леевее
             this.first.prev.elements[this.sizeContainerMax-1] = t;
             this.first.prev.next = this.first; // у нового контейнера ссылка на следующий
             this.first = this.first.prev; // первый контейнер получает ссылку на предыдущий
@@ -78,13 +78,13 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
             for (int i = this.sizeContainerMax-1; i >= 0; i--){ // так как addFirst заполняет контейнер справа налево i = sizeContainerMax-1
                 if (this.first.elements[i] == null){
                     this.first.elements[i] = t;
-                    this.sizeDeque += 1;
+//                    this.sizeDeque += 1;
                     //TODO проверить будет ли работать (мб i = 0)
                  i = 0;
 //                    break;
                 }
                 else if (i == 0){
-                    this.first.prev = new Conteiner<T>();
+                    this.first.prev = new Container<T>();
                     this.first.prev.elements[this.sizeContainerMax-1] = t;
                     this.first.prev.next = this.first;
                     this.first = this.first.prev;
@@ -100,11 +100,11 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
             throw new NullPointerException("Cannot add null element");
         }
         if (this.last == null) {
-            this.last = new Conteiner<T>();
+            this.last = new Container<T>();
             this.first = this.last;
         }
         if (this.last == this.first && this.last.elements[this.sizeContainerMax - 1] != null){
-            this.last.next = new Conteiner<T>(); //  создаем контейнер правее
+            this.last.next = new Container<T>(); //  создаем контейнер правее
             this.last.next.elements[0] = t;
             this.last.next.prev = this.last; // у нового контейнера ссылка на предыдущий
             this.last = this.last.next; // старый контейнер получает ссылку на следующий
@@ -121,7 +121,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
 //                    break;
                 } else {
                     if (i == this.sizeContainerMax) {
-                        this.last.next = new Conteiner<T>();
+                        this.last.next = new Container<T>();
                         this.last.next.elements[0] = t;
                         this.last.next.prev = this.last; // у нового контейнера ссылка на предыдущий
                         this.last = this.last.next; // старый контейнер получает ссылку на следующий
@@ -144,32 +144,62 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
 
     @Override
     public T removeFirst() {
-        boolean flg = false;
         T removeElement = null;
-        if (this.first == null){
-            throw new NoSuchElementException("Пустая очередь");
-        }
-        else{
-            for (int i = 0; i < this.sizeContainerMax; i++){
-                if (this.first.elements[i] != null){
+        if (this.first == null) {
+            throw new NoSuchElementException("Пустой контейнер");
+        } else {
+            for (int i = 0; i < this.sizeContainerMax; i++) {
+                if (this.first.elements[i] != null) {
                     removeElement = (T) this.first.elements[i];
                     this.first.elements[i] = null;
-                    this.sizeDeque--;
-                    flg = true;
+                    if (this.first.elements[this.sizeContainerMax - 1] == null){
+                        this.sizeDeque -= 1;
+                    }
+                    boolean flg = true;
+
+                    if(this.first.elements[this.sizeContainerMax - 1] != null || this.first == this.last || this.sizeDeque == 0){
+                        flg = false;
+                    }
+                    //удаление контейнера
+                    if (flg && this.first.next == null) {
+                        this.first = this.first.next;
+                        this.first.prev = null;
+                    }
+                    i = this.sizeContainerMax;
                 }
-                if (flg == true && (this.first.elements[this.sizeContainerMax - 1] == null || this.sizeDeque == 0)){
-                    this.first.next.prev = null; // удаляем контейнер
-                    this.first = this.first.next;
-                }
-            i = this.sizeContainerMax;
             }
+            return removeElement;
         }
-        return removeElement;
     }
 
     @Override
     public T removeLast() {
-        return null;
+        T removeElement = null;
+        if (this.last == null) {
+            throw new NoSuchElementException("Пустой контейнер");
+        } else {
+            for (int i = this.sizeContainerMax - 1; i >= 0; i--) {
+                if (this.last.elements[i] != null) {
+                    removeElement = (T) this.last.elements[i];
+                    this.last.elements[i] = null;
+                    if (this.last.elements[0] == null){
+                        this.sizeDeque -= 1;
+                    }
+                    boolean flg = true;
+
+                    if(this.last.elements[0] != null || this.first == this.last || this.sizeDeque == 0){
+                        flg = false;
+                    }
+                    //удаление контейнера
+                    if (flg && this.last.prev == null) {
+                        this.last = this.last.prev;
+                        this.last.next = null;
+                    }
+                    i = -1;
+                }
+            }
+            return removeElement;
+        }
     }
 
     @Override
@@ -239,7 +269,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
         if (o == null){
             throw new NullPointerException("Нельзя удалять значение null");
         }
-        Conteiner<T> current = this.first;
+        Container<T> current = this.first;
         while (current != null){
             for (int i = 0; i < this.sizeContainerMax; i++){
                 if (current.elements[i].equals(o)){
@@ -352,11 +382,14 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
     @Override
     public boolean contains(Object o) {
         if (o == null){
-            throw new NullPointerException("Вы добавляете null");
+            throw new NullPointerException("Вы проверяете null");
         }
         else {
-            if (this.first != null){
+            while (this.first != null){
                 for (int i = 0; i < this.sizeContainerMax; i++){
+                    if (this.first.elements[i] == null){
+                        continue;
+                    }
                     if (this.first.elements[i].equals(o)){
                         return true;
                     }
@@ -379,18 +412,18 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
 
     private class TripletDequeIterator<T> implements Iterator<T>{
         private TripletDeque<T> tripletDeque;
-        private Conteiner<T> conteiner;
-        private int conteinerIndex;
+        private Container<T> container;
+        private int conteinerLength;
 
         public TripletDequeIterator(TripletDeque<T> tripletDeque){
             this.tripletDeque = tripletDeque;
-            this.conteiner = (Conteiner<T>) this.tripletDeque.first;
-            this.conteinerIndex = 0;
+            this.container = (Container<T>) this.tripletDeque.first;
+            this.conteinerLength = 0;
         }
 
         @Override
         public boolean hasNext() {
-            return this.conteiner != null;
+            return this.container != null;
         }
 
         @Override
@@ -398,11 +431,11 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
             if (!this.hasNext()){
                 throw new NoSuchElementException("Контейнера не существует");
             }
-            T nexElement = (T) this.conteiner.elements[conteinerIndex++];
-            if (this.conteinerIndex == 4){
-                this.conteiner = this.conteiner.next;
-                if (this.conteiner != null){
-                    this.conteinerIndex = 0;
+            T nexElement = (T) this.container.elements[conteinerLength++];
+            if (this.conteinerLength == 5){
+                this.container = this.container.next;
+                if (this.container != null){
+                    this.conteinerLength = 0;
                 }
             }
             return nexElement;
