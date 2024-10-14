@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="76607499-da58-4111-a820-be31cd95b500" name="Changes" comment="class Container">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Containerable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Containerable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TripletDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TripletDeque.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/task.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/task.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/TripletDequeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/TripletDequeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +54,7 @@
     "JUnit.TripletDequeTest.addTest.executor": "Run",
     "JUnit.TripletDequeTest.executor": "Run",
     "JUnit.TripletDequeTest.iterTest.executor": "Run",
+    "JUnit.TripletDequeTest.removeTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
@@ -146,11 +143,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TripletDequeTest.removeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MAS_JAVA_HW2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.TripletDequeTest" />
+      <option name="METHOD_NAME" value="removeTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.main" />
-        <item itemvalue="JUnit.TripletDequeTest" />
         <item itemvalue="JUnit.TripletDequeTest.iterTest" />
+        <item itemvalue="JUnit.TripletDequeTest.removeTest" />
+        <item itemvalue="JUnit.TripletDequeTest" />
         <item itemvalue="JUnit.TripletDequeTest.addTest" />
       </list>
     </recent_temporary>
@@ -173,7 +187,8 @@
       <updated>1728322356004</updated>
       <workItem from="1728322357116" duration="10717000" />
       <workItem from="1728735519653" duration="16512000" />
-      <workItem from="1728845034461" duration="5631000" />
+      <workItem from="1728845034461" duration="6065000" />
+      <workItem from="1728891255206" duration="7010000" />
     </task>
     <task id="LOCAL-00001" summary="class Container">
       <option name="closed" value="true" />
@@ -194,7 +209,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -216,6 +243,14 @@
           </properties>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="4" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
