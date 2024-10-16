@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.swing.*;
 import java.util.Collection;
 import java.util.Deque;
 import java.util.Iterator;
@@ -135,7 +136,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
         if (t == null) {
             throw new NullPointerException("Cannot add null element");
         }
-        if (this.numberElems > this.sizeDequeMax){
+        if (this.numberElems + 1 > this.sizeDequeMax){
             return false;
         }
         this.addFirst(t);
@@ -147,7 +148,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
         if (t == null) {
             throw new NullPointerException("Cannot add null element");
         }
-        if (this.numberElems > this.sizeDequeMax){
+        if (this.numberElems + 1 > this.sizeDequeMax){
             return false;
         }
         this.addLast(t);
@@ -268,12 +269,19 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
 
     @Override
     public T peekFirst() {
-        return null;
+        if (this.isEmpty()) {
+            return null;
+        }
+        return getFirst();
     }
+
 
     @Override
     public T peekLast() {
-        return null;
+        if (this.isEmpty()) {
+            return null;
+        }
+        return getLast();
     }
 
     @Override
@@ -294,12 +302,6 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
                             }
                         }
                     }
-                    else {
-                        for (int j = this.sizeContainerMax-1; j >= 1; j--) {//Работает при удалении последнего элемента очереди
-                        current.elements[j] = current.elements[j - 1];
-                        current.elements[j - 1] = null;
-                        }
-                    }
                     this.numberElems -= 1;
                     if (current.elements[this.sizeContainerMax - 1] == null && current == this.first){
                         this.first = current.next;
@@ -307,23 +309,22 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
                             this.first.prev = null;
                         }
                     }
-                    else if (current == this.last && this.last.prev != null){
-                        for (int j = 0; j < this.sizeContainerMax; j++){
-                            if (this.last.elements[j] == null){
+                    else if (current == this.last && this.last.prev != null) {
+                        for (int j = 0; j < this.sizeContainerMax; j++) {
+                            if (this.last.elements[j] == null) {
                                 this.last.elements[j] = this.last.prev.elements[this.sizeContainerMax - j - 1];
                                 this.last.prev.elements[this.sizeContainerMax - j - 1] = null;
                             }
-                            for (int a = this.sizeContainerMax - 1; a >= 1; a--) {//Работает при удалении последнего элемента очереди
-                                this.last.prev.elements[a] = this.last.prev.elements[a - 1];
-                                this.last.prev.elements[a - 1] = null;
+                            if (this.last.prev.elements[this.sizeContainerMax - 1] == null){
+                                for (int a = this.sizeContainerMax - 1; a >= 1; a--) {//Работает при удалении последнего элемента очереди
+                                    this.last.prev.elements[a] = this.last.prev.elements[a - 1];
+                                    this.last.prev.elements[a - 1] = null;
+                                }
+                                break;
                             }
                         }
-                        if(this.last.prev.elements[this.sizeContainerMax - 1] == null){
+                        if (this.last.prev.elements[this.sizeContainerMax - 1] == null) {
                             this.last.prev = null;
-                        }
-                        this.last = current.prev;
-                        if (this.last != null){
-                            this.last.next = null;
                         }
                     }
                     else {
@@ -347,27 +348,69 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
         }
         Container<T> current = this.last;
         while (current != null){
-            for (int i = this.sizeContainerMax - 1; i >=0; i--){
-                if (current.elements[i].equals(o)){
+            for (int i = this.sizeContainerMax - 1; i >= 0; i--){
+                if (current.elements[i] != null && current.elements[i].equals(o)){
                     current.elements[i] = null;
-                    for (int j = i; j < this.sizeContainerMax - 1; j++) {
-                        current.elements[j - 1] = current.elements[j];
+                    if (i != 0 || i != this.sizeContainerMax - 1) {
+                        if (current.prev == null){
+                            for (int j = i; j >= 0; j--){ ////Работает при удалении любого элемента первой очереди
+                                if (current.elements[j] == null){
+                                    current.elements[j] = current.elements[j-1];
+                                    current.elements[j-1] = null;
+                                    if (j == 1){
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            for (int j = i; j < this.sizeDequeMax; j++){ ////Работает при удалении любого элемента первой очереди
+                                if (current.elements[j] == null && current.elements[this.sizeContainerMax - 1] != null){
+                                    current.elements[j] = current.elements[j+1];
+                                    current.elements[j+1] = null;
+                                    if (j + 1 == this.sizeContainerMax - 1 ){
+                                        break;
+                                    }
+                                }
+                                else if (current.elements[this.sizeContainerMax - 1] == null){
+                                    break;
+                                }
+                            }
+                        }
                     }
+                    this.numberElems -= 1;
                     if (current.elements[0] == null && current == this.last){
                         this.last = current.prev;
                         if (this.last != null){
                             this.last.next = null;
                         }
                     }
-                    else if (current == this.first){
-                        this.first = current.next;
-                        if (this.first != null){
-                            this.first.prev = null;
+                    else if (current == this.first && this.first.next != null) {
+                        for (int j = 0; j < this.sizeContainerMax; j++) {
+                            if (this.last.elements[j] == null) {
+                                break;
+//                                this.last.elements[j] = this.last.prev.elements[this.sizeContainerMax - j - 1];
+//                                this.last.prev.elements[this.sizeContainerMax - j - 1] = null;
+                            }
+                            if (this.last.prev.elements[this.sizeContainerMax - 1] == null){
+                                for (int a = this.sizeContainerMax - 1; a >= 1; a--) {//Работает при удалении последнего элемента очереди
+                                    this.last.prev.elements[a] = this.last.prev.elements[a - 1];
+                                    this.last.prev.elements[a - 1] = null;
+                                }
+                                break;
+                            }
+                        }
+                        if (this.first.next.elements[0] == null) {
+                            this.first.next = null;
                         }
                     }
                     else {
-                        current.next.prev = current.prev;
-                        current.prev.next = current.next;
+                        if (current.next != null){
+                            current.next.prev = current.prev;
+                            if (current.prev != null){
+                                current.prev.next = current.next;
+                            }
+                        }
                     }
                     return true;
                 }
@@ -379,62 +422,93 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
 
     @Override
     public boolean add(T t) {
-        return false;
+        if (this.numberElems + 1 > this.sizeDequeMax){
+            throw new IllegalStateException("Объем очереди достиг предела");
+        }
+        else {
+            this.addLast(t);
+            return true;
+        }
     }
 
     @Override
     public boolean offer(T t) {
-        return false;
+        if (this.numberElems + 1 > this.sizeDequeMax){
+            return false;
+        }
+        else {
+            this.addLast(t);
+            return true;
+        }
     }
 
     @Override
     public T remove() {
-        return null;
+        return this.removeFirst();
     }
 
     @Override
     public T poll() {
-        return null;
+        if (this.isEmpty()) {
+            return null;
+        }
+        return this.removeFirst();
     }
 
     @Override
     public T element() {
-        return null;
+        return this.getFirst();
     }
 
     @Override
     public T peek() {
-        return null;
+        if (this.isEmpty()) {
+            return null;
+        }
+        return this.getFirst();
     }
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        boolean added = false;
+        for (T s: c){
+            addLast(s);
+            added = true;
+        }
+        return added;
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void clear() {
-
+        this.first = null;
+        this.last = null;
+        this.numberElems = 0;
     }
 
     @Override
     public void push(T t) {
-
+        if (t == null) {
+            throw new NullPointerException("Cannot add null element");
+        }
+        if (this.numberElems + 1 > this.sizeDequeMax){
+            throw new IllegalStateException("Объем очереди достиг предела");
+        }
+        this.addFirst(t);
     }
 
     @Override
     public T pop() {
-        return null;
+        return removeFirst();
     }
 
     @Override
@@ -447,7 +521,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -484,17 +558,31 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
     private class TripletDequeIterator<T> implements Iterator<T>{
         private TripletDeque<T> tripletDeque;
         private Container<T> container;
+        private int indexElem;
         private int conteinerLength;
 
         public TripletDequeIterator(TripletDeque<T> tripletDeque){
+            this.conteinerLength = 5;
             this.tripletDeque = tripletDeque;
             this.container = (Container<T>) this.tripletDeque.first;
-            this.conteinerLength = 0;
+            this.indexElem = findFirst(container);
         }
 
+        private int findFirst(Container<T> container){
+            for (int i = 0; i < this.conteinerLength; i++){
+                if (container != null){
+                    if (container.elements[i] != null){
+                        return i;
+                    }
+                }
+            }
+            return 0;
+        }
         @Override
         public boolean hasNext() {
-            return this.container != null;
+            if(this.container!=null){
+                return this.container.elements[indexElem] != null;
+            }else return false;
         }
 
         @Override
@@ -502,13 +590,14 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
             if (!this.hasNext()){
                 throw new NoSuchElementException("Контейнера не существует");
             }
-            T nexElement = (T) this.container.elements[this.conteinerLength++];
-            if (this.conteinerLength == 5){
+            T nexElement = (T) this.container.elements[this.indexElem++];
+            if (this.indexElem == 5){
                 this.container = this.container.next;
                 if (this.container != null){
-                    this.conteinerLength = 0;
+                    this.indexElem = 0;
                 }
             }
+
             return nexElement;
         }
     }
@@ -522,16 +611,16 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public Iterator<T> descendingIterator() {
-        return null;
+        throw new UnsupportedOperationException();
     }
 }
