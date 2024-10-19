@@ -1,14 +1,11 @@
 package org.example;
 
 import javax.swing.*;
-import java.util.Collection;
-import java.util.Deque;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class TripletDeque<T> implements Deque<T>, Containerable{
-    private Container<T> first;
-    private Container<T> last;
+    Container<T> first;
+    Container<T> last;
     private int sizeContainerMax = 5;
     private int sizeDequeMax = 1000;
     private int numberElems = 0;
@@ -134,7 +131,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
     @Override
     public boolean offerFirst(T t) {
         if (t == null) {
-            throw new NullPointerException("Cannot add null element");
+            throw new NullPointerException("Нельзя добавить значение null");
         }
         if (this.numberElems + 1 > this.sizeDequeMax){
             return false;
@@ -146,7 +143,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
     @Override
     public boolean offerLast(T t) {
         if (t == null) {
-            throw new NullPointerException("Cannot add null element");
+            throw new NullPointerException("Нельзя добавить значение null");
         }
         if (this.numberElems + 1 > this.sizeDequeMax){
             return false;
@@ -230,15 +227,12 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
         T elementFind = null;
         if (this.first == null){
             System.out.println("Пустой контейнер");
-//            return null;
-            //TODO Exception
             throw new  NoSuchElementException("Пустой контейнер");
         }
         else {
             for (int i = 0; i < this.sizeContainerMax; i++){
                 if (this.first.elements[i] != null){
                     elementFind = (T) this.first.elements[i];
-//                    i = this.first.elements.length;
                     break;
                 }
             }
@@ -251,15 +245,12 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
         T elementFind = null;
         if (this.last == null){
             System.out.println("Пустой контейнер");
-//            return null;
-            //TODO Exception
             throw new  NoSuchElementException("Пустой контейнер");
         }
         else {
             for (int i = this.last.elements.length - 1; i >= 0; i--){
                 if (this.last.elements[i] != null){
                     elementFind = (T) this.last.elements[i];
-//                    i = -1;
                     break;
                 }
             }
@@ -286,22 +277,26 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
 
     @Override
     public boolean removeFirstOccurrence(Object o) {
+        System.out.println("remove");
         if (o == null){
             throw new NullPointerException("Нельзя удалять значение null");
         }
+
         Container<T> current = this.first;
         while (current != null){
             for (int i = 0; i < this.sizeContainerMax; i++){
                 if (current.elements[i] != null && current.elements[i].equals(o)){
                     current.elements[i] = null;
                     if (i != this.sizeContainerMax - 1){
-                        for (int j = i + 1; j > 0; j--){ ////Работает при удалении любого элемента очереди кроме последнего
+                        for (int j = i + 1; j > 0; j--){
                             if (current.elements[j] == null){
                                 current.elements[j] = current.elements[j-1];
                                 current.elements[j - 1] = null;
                             }
                         }
                     }
+
+                    System.out.println(Arrays.toString(current.elements));
                     this.numberElems -= 1;
                     if (current.elements[this.sizeContainerMax - 1] == null && current == this.first){
                         this.first = current.next;
@@ -316,7 +311,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
                                 this.last.prev.elements[this.sizeContainerMax - j - 1] = null;
                             }
                             if (this.last.prev.elements[this.sizeContainerMax - 1] == null){
-                                for (int a = this.sizeContainerMax - 1; a >= 1; a--) {//Работает при удалении последнего элемента очереди
+                                for (int a = this.sizeContainerMax - 1; a >= 1; a--) {
                                     this.last.prev.elements[a] = this.last.prev.elements[a - 1];
                                     this.last.prev.elements[a - 1] = null;
                                 }
@@ -333,6 +328,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
                             current.next.prev = current.prev;
                         }
                     }
+
                     return true;
                 }
             }
@@ -353,7 +349,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
                     current.elements[i] = null;
                     if (i != 0 || i != this.sizeContainerMax - 1) {
                         if (current.prev == null){
-                            for (int j = i; j >= 0; j--){ ////Работает при удалении любого элемента первой очереди
+                            for (int j = i; j >= 0; j--){
                                 if (current.elements[j] == null){
                                     current.elements[j] = current.elements[j-1];
                                     current.elements[j-1] = null;
@@ -364,7 +360,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
                             }
                         }
                         else {
-                            for (int j = i; j < this.sizeDequeMax; j++){ ////Работает при удалении любого элемента первой очереди
+                            for (int j = i; j < this.sizeDequeMax; j++){
                                 if (current.elements[j] == null && current.elements[this.sizeContainerMax - 1] != null){
                                     current.elements[j] = current.elements[j+1];
                                     current.elements[j+1] = null;
@@ -389,11 +385,9 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
                         for (int j = 0; j < this.sizeContainerMax; j++) {
                             if (this.last.elements[j] == null) {
                                 break;
-//                                this.last.elements[j] = this.last.prev.elements[this.sizeContainerMax - j - 1];
-//                                this.last.prev.elements[this.sizeContainerMax - j - 1] = null;
                             }
                             if (this.last.prev.elements[this.sizeContainerMax - 1] == null){
-                                for (int a = this.sizeContainerMax - 1; a >= 1; a--) {//Работает при удалении последнего элемента очереди
+                                for (int a = this.sizeContainerMax - 1; a >= 1; a--) {
                                     this.last.prev.elements[a] = this.last.prev.elements[a - 1];
                                     this.last.prev.elements[a - 1] = null;
                                 }
@@ -514,7 +508,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable{
     @Override
     public boolean remove(Object o) {
         if (o == null){
-            throw new NullPointerException("Cannot remove null element");
+            throw new NullPointerException("Нельзя вернуть значение null");
         }
         return this.removeFirstOccurrence(o);
     }

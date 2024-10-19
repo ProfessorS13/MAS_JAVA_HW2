@@ -14,25 +14,19 @@ public class main {
         tQueue.addFirst("four");
         tQueue.addFirst("five");
         tQueue.addFirst("six");
-        tQueue.addFirst("seven");
-        tQueue.addFirst("eight");
-        tQueue.addFirst("nine");
-        tQueue.addFirst("10");
-        tQueue.addFirst("11");
-        for (String s : tQueue) {
+
+        for(String s: tQueue){
             System.out.print(s + ", ");
         }
-        System.out.println();
 
-        System.out.println(tQueue.getFirst());
-//        System.out.println(tQueue.peekFirst());
-        System.out.println(tQueue.remove());
-        tQueue.clear();
-        for (String s : tQueue) {
+        System.out.println("");
+
+        System.out.println(tQueue.removeFirstOccurrence("six"));
+        System.out.println("");
+
+        for(String s: tQueue){
             System.out.print(s + ", ");
         }
-        System.out.println();
-        System.out.println("Размер  - " + tQueue.size());
-
+//        System.out.println(tQueue.getLast());
     }
 }
