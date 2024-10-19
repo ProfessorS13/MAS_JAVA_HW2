@@ -278,7 +278,7 @@ class TripletDequeTest {
         cntr1 = cQueue.getContainerByIndex(1);
         cntr2 = cQueue.getContainerByIndex(2);
 
-        Assertions.assertTrue(cntr!=null && cntr1 != null && cntr2 ==null);
+        Assertions.assertTrue(cntr!=null && cntr1 != null && cntr2 == null);
 
     }
 

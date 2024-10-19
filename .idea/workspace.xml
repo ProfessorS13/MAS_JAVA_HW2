@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76607499-da58-4111-a820-be31cd95b500" name="Changes" comment="class Container">
+    <list default="true" id="76607499-da58-4111-a820-be31cd95b500" name="Changes" comment="check">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/TripletDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/TripletDeque.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/TripletDequeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/TripletDequeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +95,7 @@
       <recent name="org.example" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.main">
+  <component name="RunManager" selected="JUnit.TripletDequeTest">
     <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.main" />
       <module name="MAS_JAVA_HW2" />
@@ -173,10 +174,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.main" />
         <item itemvalue="JUnit.TripletDequeTest" />
-        <item itemvalue="JUnit.TripletDequeTest.testIteratorNoMoreItem" />
         <item itemvalue="JUnit.TripletDequeTest.removeContainerTest" />
+        <item itemvalue="Application.main" />
+        <item itemvalue="JUnit.TripletDequeTest.testIteratorNoMoreItem" />
         <item itemvalue="JUnit.TripletDequeTest.holeTest" />
       </list>
     </recent_temporary>
@@ -209,7 +210,7 @@
       <workItem from="1729096726518" duration="14261000" />
       <workItem from="1729117223267" duration="2053000" />
       <workItem from="1729153008079" duration="146000" />
-      <workItem from="1729330695204" duration="2161000" />
+      <workItem from="1729330695204" duration="8146000" />
     </task>
     <task id="LOCAL-00001" summary="class Container">
       <option name="closed" value="true" />
@@ -219,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728331941652</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="check">
+      <option name="closed" value="true" />
+      <created>1729333075941</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729333075941</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,7 +259,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="class Container" />
-    <option name="LAST_COMMIT_MESSAGE" value="class Container" />
+    <MESSAGE value="check" />
+    <option name="LAST_COMMIT_MESSAGE" value="check" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -263,11 +273,6 @@
           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="4" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/TripletDeque.java</url>
-          <line>306</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>

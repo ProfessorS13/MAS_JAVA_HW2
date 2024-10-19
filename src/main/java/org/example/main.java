@@ -15,18 +15,17 @@ public class main {
         tQueue.addFirst("five");
         tQueue.addFirst("six");
 
+
         for(String s: tQueue){
             System.out.print(s + ", ");
         }
 
         System.out.println("");
-
         System.out.println(tQueue.removeFirstOccurrence("six"));
         System.out.println("");
 
         for(String s: tQueue){
             System.out.print(s + ", ");
         }
-//        System.out.println(tQueue.getLast());
     }
 }
