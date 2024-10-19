@@ -69,6 +69,10 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
 
     @Override
     public void addFirst(T t) {
+        if (this.numberElems + 1 > this.sizeDequeMax) {
+            throw new IllegalStateException("Нельзя выходить за допустимые пределы очереди");
+        }
+
         if (t == null) {
             throw new NullPointerException("Cannot add null element");
         }
@@ -82,9 +86,6 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
             this.numberElems += 1;
             this.first.prev.next = this.first; // у нового контейнера ссылка на следующий
             this.first = this.first.prev; // первый контейнер получает ссылку на предыдущий
-            if (this.numberElems > this.sizeDequeMax) {
-                throw new IllegalStateException("Нельзя выходить за допустимые пределы очереди");
-            }
         } else {
             // цикл по контейнеру
             for (int i = this.sizeContainerMax - 1; i >= 0; i--) { // так как addFirst заполняет контейнер справа налево i = sizeContainerMax-1
@@ -105,6 +106,9 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
 
     @Override
     public void addLast(T t) {
+        if (this.numberElems + 1 > this.sizeDequeMax) {
+            throw new IllegalStateException("Нельзя выходить за допустимые пределы очереди");
+        }
         if (t == null) {
             throw new NullPointerException("Cannot add null element");
         }
@@ -118,9 +122,6 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
             this.numberElems += 1;
             this.last.next.prev = this.last; // у нового контейнера ссылка на предыдущий
             this.last = this.last.next; // старый контейнер получает ссылку на следующий
-            if (this.numberElems > this.sizeDequeMax) {
-                throw new IllegalStateException("Нельзя выходить за допустимые пределы очереди");
-            }
         } else {
             // цикл по контейнеру
             for (int i = 0; i < this.sizeContainerMax; i++) { // так как addLast заполняет контейнер слева направо i = 0
